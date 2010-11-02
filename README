@@ -1,0 +1,11 @@
+This project is aiming at reimplementing the open functions with the princip of
+least authotiry (POLA).
+It consists of a minimalist shell (polash) that can executes commands using
+the polalib for open calls, the polalib itself, and the pola-i command that is
+interactive when choosing to allow or not reading/writing rights.
+
+Make will compile the program and place the binaries files (polash and pola-i)
+in the /bin folder. This one is present ine the environnment $PATH, so you can
+either call directly the pola-i command, or call it from the polash shell.
+
+
