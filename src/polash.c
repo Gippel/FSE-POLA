@@ -184,7 +184,7 @@ int main (int argc, char** argv)
 
 		if ((pid = fork()) == -1)
 		{
-			perror("fork -> ")
+			perror("fork -> ");
 		}
 		else if (pid ==0)
 		{
