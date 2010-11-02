@@ -23,7 +23,17 @@
 
 #include "polalib.h"
 
-
+/**
+* Open primitive
+*
+* Sends back to the reimplemented functions depending on 
+* the interactivity is set or not.
+*
+* @param pathname the name of the file to open
+* @param flags the flags to open the file with
+* @param mode options
+* @return a descriptor on the file to open if it succeeds, -1 otherwise
+*/
 int open(const char* pathname, int flags, mode_t mode)
 {
 	if (getenv("INTERACTIVE_MODE") != NULL)
@@ -33,6 +43,18 @@ int open(const char* pathname, int flags, mode_t mode)
 }
 
 
+
+/**
+* Non interactive open function
+*
+* Reimplementation of the open function by checking if a file has been
+* specifically allowed in reading/writing in the command line.
+*
+* @param pathname the name of the file to open
+* @param flags the flags to open the file with
+* @param mode options
+* @return a descriptor on the file to open if it succeeds, -1 otherwise
+*/
 int non_inter_open(const char* pathname, int flags, mode_t mode)
 {
 	char* cmd;
@@ -77,6 +99,19 @@ int non_inter_open(const char* pathname, int flags, mode_t mode)
 	return open_libc(pathname, flags, mode);
 }
 
+
+
+/**
+* Interactive open function
+*
+* Reimplementation of the open function by asking if, for every files, the user
+* wants to allow it in reading/writing.
+*
+* @param pathname the name of the file to open
+* @param flags the flags to open the file with
+* @param mode options
+* @return a descriptor on the file to open if it succeeds, -1 otherwise
+*/
 int inter_open(const char* pathname, int flags, mode_t mode)
 {
 	int flag=-1;
@@ -198,6 +233,16 @@ int inter_open(const char* pathname, int flags, mode_t mode)
 }
 
 
+
+/**
+* Opendir primitive
+*
+* Sends back to the reimplemented functions depending on 
+* the interactivity is set or not.
+*
+* @param dirname the name of the directory to open
+* @return a descriptor on the direcory to open if it succeeds, NULL otherwise
+*/
 DIR *opendir(const char* dirname)
 {
 	if (getenv("INTERACTIVE_MODE") != NULL)
@@ -207,7 +252,16 @@ DIR *opendir(const char* dirname)
 }
 
 
-	
+
+/**
+* Non interactive open function
+*
+* Reimplementation of the opendir function by checking if a directory has been
+* specifically allowed in reading/writing in the command line.
+*
+* @param dirname the name of the directory to open
+* @return a descriptor on the direcory to open if it succeeds, NULL otherwise
+*/
 DIR *non_inter_opendir(const char* dirname)
 {
 	// get the command line from the shell polash
@@ -232,6 +286,15 @@ DIR *non_inter_opendir(const char* dirname)
 
 
 
+/**
+* Interactive opendir function
+*
+* Reimplementation of the opendir function by asking if, for every directories, 
+* the user wants to allow it in reading/writing.
+* 
+* @param dirname the name of the directory to open
+* @return a descriptor on the direcory to open if it succeeds, NULL otherwise
+*/
 DIR *inter_opendir(const char* dirname)
 {
 	char rep=0;

@@ -23,7 +23,9 @@
 
 #include "polash.h"
 
-
+/**
+* Updates the environnment PATH with the bin directory of the project.
+*/
 int setbin()
 {
 	char *tmp;
@@ -46,6 +48,14 @@ int setbin()
 }
 
 
+
+/**
+* Parses a string (e.g. containig a command line)
+* 
+* @param buf the string to be parsed
+* @return an array of strings containing the command and 
+* each of its arguments separately
+*/
 char** parser(char* buf)
 {
 	int i=0,j=0,k=0, decal=0, quote=0;
@@ -78,7 +88,7 @@ char** parser(char* buf)
 	}
 	i=0;
 
-	do		// this part is like strtok but keep the double quotes
+	do		// this part is like strtok but keeps the double quotes
 	{
 		// if we find a space or a '\0'
 		if (buf[i]==' ' || buf[i]=='\0' )

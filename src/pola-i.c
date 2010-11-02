@@ -42,7 +42,7 @@ int main (int argc, char** argv)
 	for (i=1; i<argc; i++)
         argv[i-1] = argv[i];
     argv[i-1] = NULL;
-    //executes the command
+    // executes the command
    	execvp(argv[0], argv);
     perror("Error while executing the command -> ");
    	
